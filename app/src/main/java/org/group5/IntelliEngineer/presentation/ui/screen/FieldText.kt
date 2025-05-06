@@ -1,4 +1,4 @@
-package org.group5.IntelliEngineer
+package org.group5.IntelliEngineer.presentation.ui.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

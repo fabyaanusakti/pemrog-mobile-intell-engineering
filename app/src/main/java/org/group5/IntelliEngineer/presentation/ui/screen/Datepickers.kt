@@ -1,4 +1,4 @@
-package org.group5.IntelliEngineer
+package org.group5.IntelliEngineer.presentation.ui.screen
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun DatepickerScreen() {
+fun DatePickerScreen() {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = MaterialTheme.colorScheme.background

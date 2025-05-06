@@ -1,4 +1,4 @@
-package org.group5.IntelliEngineer
+package org.group5.IntelliEngineer.presentation.ui.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
+    id("org.jetbrains.kotlin.plugin.compose") version "2.1.10"
 }
 
 android {
@@ -11,7 +13,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get() //"1.5.14"
     }
 
     defaultConfig {
@@ -53,10 +55,20 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("androidx.core:core-splashscreen:1.0.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    implementation("androidx.compose.material3:material3:1.1.2")
-    implementation ("androidx.navigation:navigation-compose:2.7.5")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.5.0")
-    debugImplementation ("androidx.compose.ui:ui-tooling:1.5.0")
+
+    // Splash screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+    //Compose
+    implementation("androidx.compose.material3:material3:1.3.2")
+    implementation("androidx.navigation:navigation-compose:2.8.9")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.8.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation("androidx.activity:activity-compose:1.10.1")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.8.0")
+
+    //Room
+    implementation("androidx.room:room-runtime:2.7.1")
+    kapt("androidx.room:room-compiler:2.7.1")
+    implementation("androidx.room:room-ktx:2.7.1")
 }
