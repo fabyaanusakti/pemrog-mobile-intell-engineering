@@ -18,9 +18,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.group5.IntelliEngineer.data.auth.entity.User
-import org.group5.IntelliEngineer.presentation.ui.screen.DatePickerScreen
-import org.group5.IntelliEngineer.presentation.ui.screen.DropdownScreen
-import org.group5.IntelliEngineer.presentation.ui.screen.FieldTextScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.HomeScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.auth.LoginScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.auth.RegisterScreen
