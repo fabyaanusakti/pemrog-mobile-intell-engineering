@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.group5.IntelliEngineer.presentation.ui.viewmodel.AuthState
@@ -30,7 +31,19 @@ fun LoginScreen(
             .padding(24.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Masuk untuk melanjutkan", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = "Masuk untuk melanjutkan",
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
         Spacer(modifier = Modifier.height(24.dp))
 
         OutlinedTextField(
@@ -59,7 +72,11 @@ fun LoginScreen(
         Button(
             onClick = { authViewModel.login() },
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Blue,
+                contentColor = Color.White
+            )
         ) {
             Text("Masuk")
         }

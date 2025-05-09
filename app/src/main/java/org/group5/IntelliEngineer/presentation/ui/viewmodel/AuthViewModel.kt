@@ -50,9 +50,7 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
         currentUser = null
         authState = AuthState.Idle
     }
-
-
-
+    
 //    private fun isValidPassword(password: String): Boolean {
 //        val passwordPattern = Regex("^(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}$")
 //        return password.matches(passwordPattern)
@@ -66,12 +64,12 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
                 val user = repository.loginUser(username, password)
                 authState = if (user != null) {
                     currentUser = user
-                    AuthState.Success("Login successful")
+                    AuthState.Success("Login berhasil")
                 } else {
-                    AuthState.Error("Invalid credentials")
+                    AuthState.Error("User tidak ditemukan!")
                 }
             } catch (e: Exception) {
-                authState = AuthState.Error("Login failed: ${e.message}")
+                authState = AuthState.Error("Login gagal: ${e.message}")
             }
         }
     }
@@ -83,13 +81,13 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
 
                 // Email validation
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    authState = AuthState.Error("Invalid email address")
+                    authState = AuthState.Error("Harap masukan alamat email dengan benar")
                     return@launch
                 }
 
                 // Password validation
                 if (!isValidPassword(password)) {
-                    authState = AuthState.Error("Password must be at least 8 characters long.")
+                    authState = AuthState.Error("Password harus memiliki minimal 8 karakter")
                     // Password must be at least 8 characters long, include an uppercase letter, a number, and a special character.
                     return@launch
                 }

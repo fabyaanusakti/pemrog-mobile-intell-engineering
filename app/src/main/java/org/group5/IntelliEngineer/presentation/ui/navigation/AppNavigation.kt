@@ -24,6 +24,13 @@ import org.group5.IntelliEngineer.presentation.ui.screen.FieldTextScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.HomeScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.auth.LoginScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.auth.RegisterScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.BatasanScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.ExperienceScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.ImplementationScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.ObjectiveScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.PerencanaanScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.ProjectScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.StatusScreen
 import org.group5.IntelliEngineer.presentation.ui.viewmodel.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -74,9 +81,16 @@ fun MainApp(authViewModel: AuthViewModel) {
                 modifier = Modifier.padding(paddingValues)
             ) {
                 composable("home") { HomeScreen() }
-                composable("dropdown") { DropdownScreen() }
-                composable("FieldText") { FieldTextScreen() }
-                composable("Datepickers") { DatePickerScreen() }
+                composable("projekscreen") { ProjectScreen() }
+                composable("objectivescreen") { ObjectiveScreen() }
+                composable("experiencescreen") { ExperienceScreen() }
+                composable("implementationscreen") { ImplementationScreen() }
+                composable("batasanscreen") { BatasanScreen() }
+                composable("statusscreen") { StatusScreen() }
+                composable("perencanaanscreen") { PerencanaanScreen() }
+//                composable("dropdown") { DropdownScreen() }
+//                composable("FieldText") { FieldTextScreen() }
+//                composable("Datepickers") { DatePickerScreen() }
                 composable("login") {
                     LoginScreen(
                         authViewModel = authViewModel,
@@ -162,9 +176,16 @@ private fun DrawerContent(
 
             val menuItems = listOf(
                 "Home" to "home",
-                "Dropdown" to "dropdown",
-                "Field Text" to "FieldText",
-                "Date Pickers" to "Datepickers"
+                "Projek" to "projekscreen",
+                "Meaningful Objective" to "objectivescreen",
+                "Intellligence Experience" to "experiencescreen",
+                "Intelligence Implementation" to "implementationscreen",
+                "Batasan Perencanaan" to "batasanscreen",
+                "Status Realisasi" to "statusscreen",
+                "Perencaaan" to "perencaanscreen",
+//                "Dropdown" to "dropdown",
+//                "Field Text" to "FieldText",
+//                "Date Pickers" to "Datepickers"
             )
 
             LazyColumn {
