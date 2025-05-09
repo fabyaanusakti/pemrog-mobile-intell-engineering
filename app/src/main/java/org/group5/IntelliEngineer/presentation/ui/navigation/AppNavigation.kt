@@ -24,6 +24,9 @@ import org.group5.IntelliEngineer.presentation.ui.screen.FieldTextScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.HomeScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.auth.LoginScreen
 import org.group5.IntelliEngineer.presentation.ui.screen.auth.RegisterScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.BatasanPengembanganScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.PerencanaanScreen
+import org.group5.IntelliEngineer.presentation.ui.screen.project.StatusRealisasiScreen
 import org.group5.IntelliEngineer.presentation.ui.viewmodel.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -74,6 +77,9 @@ fun MainApp(authViewModel: AuthViewModel) {
                 modifier = Modifier.padding(paddingValues)
             ) {
                 composable("home") { HomeScreen() }
+                composable("batasan"){ BatasanPengembanganScreen()}
+                composable("status"){ StatusRealisasiScreen() }
+                composable("perencanaan"){ PerencanaanScreen() }
                 composable("dropdown") { DropdownScreen() }
                 composable("FieldText") { FieldTextScreen() }
                 composable("Datepickers") { DatePickerScreen() }
@@ -162,6 +168,7 @@ private fun DrawerContent(
 
             val menuItems = listOf(
                 "Home" to "home",
+                "Batasan" to "batasan",
                 "Dropdown" to "dropdown",
                 "Field Text" to "FieldText",
                 "Date Pickers" to "Datepickers"
