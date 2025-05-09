@@ -26,7 +26,7 @@ fun ObjectiveScreen() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
-            text = "Meaningfull Objectives",
+            text = "Meaningful Objectives",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)
