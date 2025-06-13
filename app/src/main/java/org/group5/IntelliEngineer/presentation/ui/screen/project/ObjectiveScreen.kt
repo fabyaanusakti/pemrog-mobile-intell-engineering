@@ -5,9 +5,9 @@ import android.widget.DatePicker
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -26,69 +26,70 @@ fun ObjectiveScreen() {
     val scrollState = rememberScrollState()
     val context = LocalContext.current
 
-    // Dropdown state
-    val projectOptions = listOf("Proyek A", "Proyek B", "Proyek C")
+    val projectOptions = listOf("Animals", "Education", "Healthcare")
     var selectedProject by remember { mutableStateOf(projectOptions.first()) }
     var expanded by remember { mutableStateOf(false) }
 
-    // Form field states
     var organizationalObjectives by remember { mutableStateOf("") }
     var leadingIndicator by remember { mutableStateOf("") }
     var userOutcomes by remember { mutableStateOf("") }
     var modelProperties by remember { mutableStateOf("") }
-    var startDate by remember { mutableStateOf("16/3/2025") }
-    var endDate by remember { mutableStateOf("16/5/2025") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(24.dp)
             .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(
-            text = "Meaningfull Objectives",
-            fontSize = 24.sp,
+            text = "Meaningful Objectives",
+            fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
 
-        // Dropdown untuk pilih proyek
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
-        ) {
-            OutlinedTextField(
-                value = selectedProject,
-                onValueChange = {},
-                readOnly = true,
-                label = { Text("Pilih Projek") },
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .menuAnchor()
-            )
-            ExposedDropdownMenu(
+        // Dropdown Project
+        Column {
+            Text("Pilih Projek:", fontSize = 16.sp, fontWeight = FontWeight.Medium)
+            Spacer(modifier = Modifier.height(8.dp))
+            ExposedDropdownMenuBox(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onExpandedChange = { expanded = !expanded }
             ) {
-                projectOptions.forEach { project ->
-                    DropdownMenuItem(
-                        text = { Text(project) },
-                        onClick = {
-                            selectedProject = project
-                            expanded = false
-                        }
-                    )
+                OutlinedTextField(
+                    value = selectedProject,
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .menuAnchor()
+                )
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    projectOptions.forEach { project ->
+                        DropdownMenuItem(
+                            text = { Text(project) },
+                            onClick = {
+                                selectedProject = project
+                                expanded = false
+                            }
+                        )
+                    }
                 }
             }
         }
 
-        // Input Fields
+        // Input fields kosong
         InputTextField("Organizational Objectives", organizationalObjectives) {
             organizationalObjectives = it
         }
-        InputTextField("Leading Indicator", leadingIndicator) {
+        InputTextField("Leading Indicators", leadingIndicator) {
             leadingIndicator = it
         }
         InputTextField("User Outcomes", userOutcomes) {
@@ -98,70 +99,32 @@ fun ObjectiveScreen() {
             modelProperties = it
         }
 
-        // Date Pickers
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            DateInputField("Tanggal Mulai", startDate) { selected ->
-                startDate = selected
-            }
-            DateInputField("Tanggal Selesai", endDate) { selected ->
-                endDate = selected
-            }
-        }
+        Spacer(modifier = Modifier.height(24.dp))
 
-        // Buttons
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+        Button(
+            onClick = { /* Aksi Simpan */ },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3C5A73)),
+            shape = RoundedCornerShape(8.dp)
         ) {
-            Button(onClick = { /* Simpan */ }) {
-                Text("Simpan")
-            }
-            Button(onClick = { /* Lanjut */ }) {
-                Text("Selanjutnya")
-                Icon(Icons.Default.ArrowForward, contentDescription = "Next")
-            }
+            Text("Simpan", color = Color.White)
         }
     }
 }
 
 @Composable
 fun InputTextField(label: String, value: String, onValueChange: (String) -> Unit) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = { Text(label) },
-        modifier = Modifier.fillMaxWidth()
-    )
-}
-
-@Composable
-fun DateInputField(label: String, date: String, onDateSelected: (String) -> Unit) {
-    val context = LocalContext.current
-    val calendar = Calendar.getInstance()
-
-    val year = calendar.get(Calendar.YEAR)
-    val month = calendar.get(Calendar.MONTH)
-    val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-    val datePickerDialog = DatePickerDialog(context, { _: DatePicker, y, m, d ->
-        onDateSelected("$d/${m + 1}/$y")
-    }, year, month, day)
-
-    OutlinedTextField(
-        value = date,
-        onValueChange = {},
-        readOnly = true,
-        label = { Text(label) },
-        trailingIcon = {
-            Icon(
-                imageVector = Icons.Default.CalendarToday,
-                contentDescription = "Pilih Tanggal",
-                modifier = Modifier.clickable { datePickerDialog.show() }
-            )
-        },
-        modifier = Modifier.fillMaxWidth()
-    )
+    Column {
+        Text(text = label, fontSize = 15.sp)
+        Spacer(modifier = Modifier.height(6.dp))
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp),
+            maxLines = 3
+        )
+    }
 }

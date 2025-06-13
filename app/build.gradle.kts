@@ -12,8 +12,9 @@ android {
     buildFeatures {
         compose = true
     }
+
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get() //"1.5.14"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 
     defaultConfig {
@@ -35,10 +36,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         allWarningsAsErrors = false
         jvmTarget = "11"
@@ -46,12 +49,12 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -59,7 +62,7 @@ dependencies {
     // Splash screen
     implementation("androidx.core:core-splashscreen:1.0.1")
 
-    //Compose
+    // Jetpack Compose
     implementation("androidx.compose.material3:material3:1.3.2")
     implementation("androidx.navigation:navigation-compose:2.8.9")
     implementation("androidx.compose.ui:ui-tooling-preview:1.8.0")
@@ -67,7 +70,10 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.10.1")
     debugImplementation("androidx.compose.ui:ui-tooling:1.8.0")
 
-    //Room
+    // Tambahkan untuk menghindari error Icons.Filled
+    implementation("androidx.compose.material:material-icons-extended:1.5.0")
+
+    // Room
     implementation("androidx.room:room-runtime:2.7.1")
     kapt("androidx.room:room-compiler:2.7.1")
     implementation("androidx.room:room-ktx:2.7.1")
